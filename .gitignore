@@ -1,2 +1,4 @@
 help
 node_modules
+.env
+.next
