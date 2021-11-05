@@ -23,12 +23,23 @@ contract Azerpas is ERC721Enumerable, Ownable {
     mapping(address => bool) public presalerList;
     mapping(address => uint256) public presalerListPurchases;
 
+    /// Define the URI smart-contract metadata URI
+    /// @dev see https://docs.opensea.io/docs/contract-level-metadata
     string private _contractURI;
+
+    /// Define the base URI for the tokens metadata
+    /// @notice e.g: https://azerpas.com/MyNftProject/metadata
+    /// Then a token metadata complete URI will look like this: https://azerpas.com/api/metadata/1
     string private _tokenBaseURI = "https://azerpas.com/api/metadata/";
-    // We can setup a few different addresses so the smart-contract split the total balance
+
+    /// We can setup a few different addresses so the smart-contract split the total balance
+    /// @notice in the withdraw method, we will split the gains between the artist, the dev, the owner, etc...
     address private _artistAddress = 0xBB1aCf56834b996CFC27eB481A48e041022A4476;
     address private _signerAddress = 0x3F94B50fff6C1154133EB42d181F2ec49819084c;
 
+    /// The smart-contract proof that can be used to check if any data has been modified
+    /// @notice proof is an hash of all the tokens metadata
+    /// @dev see this post https://medium.com/coinmonks/the-elegance-of-the-nft-provenance-hash-solution-823b39f99473
     string public proof;
     uint256 public giftedAmount;
     uint256 public publicAmountMinted;
@@ -176,29 +187,34 @@ contract Azerpas is ERC721Enumerable, Ownable {
         _signerAddress = addr;
     }
     
-    // TODO: to define
+    /// Set the smart-contract proof as an hash of all NFT metadata hashes
+    /// @param hash of all NFTs metadata hashes
     function setProvenanceHash(string calldata hash) external onlyOwner notLocked {
         proof = hash;
     }
     
-    // TODO: to define
+    /// Set smart-contract metadata URI
+    /// @param URI of the smart-contract
     function setContractURI(string calldata URI) external onlyOwner notLocked {
         _contractURI = URI;
     }
     
-    // TODO: to define
+    /// Set the base URI for the tokens metadata
+    /// @param URI for the base URI structure of each token
     function setBaseURI(string calldata URI) external onlyOwner notLocked {
         _tokenBaseURI = URI;
     }
 
+    /// Smart-contract metadata
+    /// @dev see https://docs.opensea.io/docs/contract-level-metadata
     function contractURI() public view returns (string memory) {
         return _contractURI;
     }
     
-    // TODO: to define
+    /// Retrieve the token URI from an id
+    /// @param tokenId as an int
     function tokenURI(uint256 tokenId) public view override(ERC721) returns (string memory) {
         require(_exists(tokenId), "Cannot query non-existent token");
-        
         return string(abi.encodePacked(_tokenBaseURI, tokenId.toString()));
     }
 }
