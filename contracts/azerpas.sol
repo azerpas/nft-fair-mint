@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.0;
 
 /*
  * Based on the excellent post by SVS (@woof) on Medium
@@ -28,22 +28,22 @@ contract Azerpas is ERC721Enumerable, Ownable {
     mapping(address => bool) public presalerList;
     mapping(address => uint256) public presalerListPurchases;
 
-    /// Define the URI smart-contract metadata URI
+    // Define the URI smart-contract metadata URI
     /// @dev see https://docs.opensea.io/docs/contract-level-metadata
     string private _contractURI;
 
-    /// Define the base URI for the tokens metadata
-    /// @notice e.g: https://azerpas.com/MyNftProject/metadata
-    /// Then a token metadata complete URI will look like this: https://azerpas.com/api/metadata/1
+    //  Define the base URI for the tokens metadata
+    // e.g: https://azerpas.com/MyNftProject/metadata
+    // Then a token metadata complete URI will look like this: https://azerpas.com/api/metadata/1
     string private _tokenBaseURI = "https://azerpas.com/api/metadata/";
 
-    /// We can setup a few different addresses so the smart-contract split the total balance
-    /// @notice in the withdraw method, we will split the gains between the artist, the dev, the owner, etc...
-    address private _artistAddress = 0xBB1aCf56834b996CFC27eB481A48e041022A4476;
-    address private _signerAddress = 0x3F94B50fff6C1154133EB42d181F2ec49819084c;
+    // We can setup a few different addresses so the smart-contract split the total balance
+    // in the withdraw method, we will split the gains between the artist, the dev, the owner, etc...
+    address private _artistAddress = 0xDf56443C80C0f08bd766da095F68bbD2c45F2cb4;
+    address private _signerAddress = 0x5260818d61ff27B7d0db3A96310246C041F7191e;
 
-    /// The smart-contract proof that can be used to check if any data has been modified
-    /// @notice proof is an hash of all the tokens metadata
+    // The smart-contract proof that can be used to check if any data has been modified
+    // proof is an hash of all the tokens metadata
     /// @dev see this post https://medium.com/coinmonks/the-elegance-of-the-nft-provenance-hash-solution-823b39f99473
     /// or the excellent BAYC mechanism https://boredapeyachtclub.com/#/provenance
     string public proof;
