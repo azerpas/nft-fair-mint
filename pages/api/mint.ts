@@ -4,11 +4,11 @@ import crypto from 'crypto';
 
 type Body = {
     account: string,
-    amount: string,
+    amount: number,
     captcha: string
 }
 
-type Data = {
+export type Data = {
     hash: string,
     signature: string,
     nonce: string

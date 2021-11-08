@@ -2,3 +2,6 @@ help
 node_modules
 .env
 .next
+artifacts
+cache
+.DS_Store

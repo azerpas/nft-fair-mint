@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import detectEthereumProvider from '@metamask/detect-provider';
+import { preMint } from '../src/utils/mint';
+import { Data } from './api/mint';
  
 const Index = () => {
     const [metamaskError, setMetamaskError] = useState();
+    const [preMintData, setPreMintData] = useState<Data>();
 
     const mint = async () => {
         const provider = await detectEthereumProvider();
@@ -16,10 +19,8 @@ const Index = () => {
                     setMetamaskError(error.message);
                     throw new Error(error.message);
             }
-            console.log(accounts);
-            // From now on, this should always be true:
-            // provider === window.ethereum
-            startApp(provider); // initialize your app
+            const res = await preMint({account: accounts[0], amount: 2, captcha: "RECAPTCHA_ANSWER"});
+            setPreMintData(res);
         } else {
             console.log('Please install MetaMask!');
         }
