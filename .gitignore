@@ -2,7 +2,9 @@ help
 node_modules
 .env
 .next
-artifacts
+artifacts/@openzeppelin
+artifacts/build-info
+artifacts/**/*.dbg.json
 cache
 .DS_Store
 Flat*

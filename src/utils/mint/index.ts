@@ -1,5 +1,6 @@
 import { Data } from "../../../pages/api/mint";
 import { API_MINT } from "../../constants/routes";
+import SmartContract from "../../../artifacts/contracts/azerpas.sol/Azerpas.json";
 import Web3 from 'web3';
 
 type Body = {
@@ -20,4 +21,5 @@ export const preMint = async (props: Body): Promise<Data> => {
 export const mint = async () => {
     const web3 = new Web3(window.ethereum);
     const networkId = await web3.eth.net.getId();
+    // TODO: front-end mint
 }
