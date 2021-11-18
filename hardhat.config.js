@@ -4,7 +4,8 @@
 require("hardhat-contract-sizer");
 require('dotenv').config();
 require("@nomiclabs/hardhat-ethers");
-const { ROPSTEN_API_URL, ROPTSEN_PRIVATE_KEY } = process.env;
+require("@nomiclabs/hardhat-etherscan");
+const { ROPSTEN_API_URL, ROPTSEN_PRIVATE_KEY, ETHERSCAN_API_KEY } = process.env;
 
 module.exports = {
    solidity: {
@@ -24,4 +25,7 @@ module.exports = {
          accounts: [`0x${ROPTSEN_PRIVATE_KEY}`]
       }
    },
+   etherscan: {
+      apiKey: ETHERSCAN_API_KEY
+   }
 }

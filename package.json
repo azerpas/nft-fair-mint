@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "@nomiclabs/hardhat-etherscan": "^2.1.7",
     "@types/react": "^17.0.34",
     "ethers": "^5.5.1",
     "hardhat": "^2.6.7",
