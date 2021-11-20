@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import detectEthereumProvider from '@metamask/detect-provider';
-import { preMint } from '../src/utils/mint';
+import { mint, preMint } from '../src/utils/mint';
 import { Data } from './api/mint';
  
 const Index = () => {
     const [metamaskError, setMetamaskError] = useState();
     const [preMintData, setPreMintData] = useState<Data>();
 
-    const mint = async () => {
+    const metamask = async () => {
         const provider = await detectEthereumProvider();
         if (provider) {
             let accounts = [];
@@ -25,10 +25,13 @@ const Index = () => {
             console.log('Please install MetaMask!');
         }
     }
+
     return (
         <div>
             <h1>Welcome to my NFT app 👋</h1>
-            <button onClick={mint}>Mint</button>
+            <button onClick={metamask}>Connect to metamask</button>
+            {{/* TODO: params of func */}}
+            <button onClick={() => { mint({hash: "", signature: "", nonce: "", tokenQuantity: 0}) }}>Mint</button>
             <p>{metamaskError}</p>
         </div>
     )

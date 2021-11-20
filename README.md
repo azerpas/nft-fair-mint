@@ -1,4 +1,4 @@
-# NFT ETH Mint template
+# NFT Fair Mint template
 
 Nowadays, gas war and bots makes minting a lot harder and expensive.
 
