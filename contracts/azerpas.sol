@@ -33,8 +33,10 @@ contract Azerpas is ERC721Enumerable, Ownable {
     string private _contractURI;
 
     //  Define the base URI for the tokens metadata
-    // e.g: https://azerpas.com/MyNftProject/metadata
+    // e.g: https://azerpas.com/MyNftProject/metadata (we will use one for our reveal)
+    // or: ipfs://bafybeic26wp7ck2bsjhjm5pcdigxqebnthqrmugsygxj5fov2r2qwhxyqu (the real one will be the IPFS one)
     // Then a token metadata complete URI will look like this: https://azerpas.com/api/metadata/1
+    // or: ipfs://bafybeic26wp7ck2bsjhjm5pcdigxqebnthqrmugsygxj5fov2r2qwhxyqu/1
     string private _tokenBaseURI = "https://azerpas.com/api/metadata/";
 
     // We can setup a few different addresses so the smart-contract split the total balance
@@ -224,6 +226,8 @@ contract Azerpas is ERC721Enumerable, Ownable {
     
     /// Retrieve the token URI from an id
     /// @param tokenId as an int
+    /// @dev see https://docs.soliditylang.org/en/v0.5.3/abi-spec.html#non-standard-packed-mode
+    /// e.g: ipfs://bafybeic26wp7ck2bsjhjm5pcdigxqebnthqrmugsygxj5fov2r2qwhxyqu/1, for tokenId: 1
     function tokenURI(uint256 tokenId) public view override(ERC721) returns (string memory) {
         require(_exists(tokenId), "Cannot query non-existent token");
         return string(abi.encodePacked(_tokenBaseURI, tokenId.toString()));
