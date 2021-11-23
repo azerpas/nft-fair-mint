@@ -12,3 +12,6 @@ This project aims to solve theses problematics by adding a few extra step to the
 - Fill the variables with your data
 - Deploy to ropsten network `npx hardhat run scripts/deploy.js --network ropsten --verbose`
 - [*Optional*]: Verify the smart-contract `npx hardhat verify --network ropsten CONTRACT_ADDRESS`
+
+
+⚠ NextJS side is still WIP
