@@ -1,24 +1,34 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import web3 from 'web3';
 import crypto from 'crypto';
+import { getIp } from '../../src/utils/server';
+import recaptchaSolving from '../../src/services/google/recaptcha'
 
 type Body = {
     account: string,
     amount: number,
-    captcha: string
+    recaptcha: string
 }
 
 export type Data = {
-    hash: string,
-    signature: string,
-    nonce: string
+    hash?: string,
+    signature?: string,
+    nonce?: string
+    message?: string
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     const signerPrivateKey = process.env.SIGNER_PRIVATE_KEY;
-    const { account, amount } = req.body;
+    const { account, amount, recaptcha } = req.body;
 
-    // TODO: captcha support
+    const ip = getIp(req)
+    if (process.env.RECAPTCHA_SECRET) {
+        const recaptchaResponse = await recaptchaSolving({response: recaptcha, ip})
+        if (recaptchaResponse.success === false) {
+            const message = "error"
+            return res.status(403).json({ message: "Captcha verification failed" })
+        }
+    }
 
     const nonce = crypto.randomBytes(9).toString("base64");
 
