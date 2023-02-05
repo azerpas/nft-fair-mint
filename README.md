@@ -1,5 +1,7 @@
 # NFT Fair Mint template
 
+[blog post: `Create a fair NFT mint on Ethereum with Solidity and NextJS`](https://blog.azerpas.com/posts/fair-mint-1)
+
 Nowadays, gas war and bots makes minting a lot harder and expensive.
 
 This project aims to solve theses problematics by adding a few extra step to the minting:
